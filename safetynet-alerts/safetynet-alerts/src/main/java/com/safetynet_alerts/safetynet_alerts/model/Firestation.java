@@ -4,6 +4,15 @@ public class Firestation {
     private String address;
     private String station;
 
+    // ✅ Ajout du constructeur
+    public Firestation(String address, String station) {
+        this.address = address;
+        this.station = station;
+    }
+
+    public Firestation(){
+    }
+
     // Getters
     public String getAddress() {
         return address;
