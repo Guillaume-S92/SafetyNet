@@ -9,7 +9,7 @@ public class Person {
     private String phone;
     private String email;
 
-    // ✅ Ajout du constructeur avec arguments
+    //  Ajout du constructeur avec arguments
     public Person(String firstName, String lastName, String address, String city, String zip, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,7 +20,7 @@ public class Person {
         this.email = email;
     }
 
-    // ✅ Constructeur sans arguments (nécessaire pour Jackson/Spring Boot)
+
     public Person() {}
 
     // Getters

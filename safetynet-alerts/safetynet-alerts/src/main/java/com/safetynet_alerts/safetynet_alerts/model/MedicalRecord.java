@@ -9,7 +9,7 @@ public class MedicalRecord {
     private List<String> medications;
     private List<String> allergies;
 
-    // ✅ Ajout du constructeur avec arguments
+    //  Ajout du constructeur avec arguments
     public MedicalRecord(String firstName, String lastName, String birthdate, List<String> medications, List<String> allergies) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,10 +18,10 @@ public class MedicalRecord {
         this.allergies = allergies;
     }
 
-    // ✅ Constructeur sans arguments
+    // Constructeur sans arguments
     public MedicalRecord() {}
 
-    // ✅ Getters et Setters
+    //  Getters et Setters
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 

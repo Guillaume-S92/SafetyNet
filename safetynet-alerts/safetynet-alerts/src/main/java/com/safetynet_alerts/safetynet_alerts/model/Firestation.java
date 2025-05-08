@@ -4,13 +4,13 @@ public class Firestation {
     private String address;
     private String station;
 
-    // ✅ Ajout du constructeur avec arguments
+    //  Ajout du constructeur avec arguments
     public Firestation(String address, String station) {
         this.address = address;
         this.station = station;
     }
 
-    // ✅ Constructeur sans arguments
+    //  Constructeur sans arguments
     public Firestation() {}
 
     // Getters
