@@ -15,22 +15,24 @@ import java.util.stream.Collectors;
 
 @Service
 public class FirestationService {
+    //Injection du DataLoader
     private final DataLoader dataLoader;
 
     public FirestationService(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
     }
 
+        //Récupération des adresses couvertes par une station
     public FirestationResponse getPersonsByStation(String stationNumber) {
         List<String> addresses = dataLoader.getFirestations().stream()
                 .filter(f -> f.getStation().equals(stationNumber))
                 .map(Firestation::getAddress)
                 .collect(Collectors.toList());
-
+        // Récupération des personnes vivant à ces adresses
         List<Person> residents = dataLoader.getPersons().stream()
                 .filter(p -> addresses.contains(p.getAddress()))
                 .collect(Collectors.toList());
-
+        // Construction de la liste des Resident DTOs
         List<FirestationResponse.Resident> residentDtos = residents.stream()
                 .map(p -> {
                     FirestationResponse.Resident dto = new FirestationResponse.Resident();
@@ -41,16 +43,16 @@ public class FirestationService {
                     return dto;
                 })
                 .collect(Collectors.toList());
-
+        //Calcul du nombre d’adultes
         int numberOfAdults = (int) residents.stream()
                 .filter(p -> {
-                    MedicalRecord record = findMedicalRecord(p.getFirstName(), p.getLastName());
+                    MedicalRecord record =  findMedicalRecord(p.getFirstName(), p.getLastName());
                     return record != null && calculateAge(record.getBirthdate()) > 18;
                 })
                 .count();
-
+        //Calcul du nombre d’enfants
         int numberOfChildren = residents.size() - numberOfAdults;
-
+        //Construction et retour de la réponse
         FirestationResponse response = new FirestationResponse();
         response.setResidents(residentDtos);
         response.setNumberOfAdults(numberOfAdults);
